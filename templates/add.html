@@ -1,1 +1,94 @@
-jidfa[posud;oufhas';pyt
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HAJCOIN Feed</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+</head>
+<body>
+	<header>
+		<div class="header-flex">
+			<h1>HAJCOIN</h1>
+			<nav class="topbar-nav" aria-label="Main Navigation">
+				<a href="/homepage.html" class="home-btn" style="margin-right:16px;">
+					<img src="{{ url_for('static', filename='images/haj4.png') }}" alt="Home" width="64">
+				</a>
+				<a href="/signin.html">
+					<img src="{{ url_for('static', filename='images/haj.png') }}" alt="Sign In" width="64">
+				</a>
+				<a href="/add.html">
+					<img src="{{ url_for('static', filename='images/haj3.png') }}" alt="Feed" width="64">
+				</a>
+			</nav>
+		</div>
+	</header>
+	<main>
+		<section class="hero">
+			<h2>Community Feed</h2>
+			<p>See what the HAJ Coin community is talking about!</p>
+		</section>
+		<div style="display: flex; max-width: 900px; margin: 0 auto; gap: 32px; align-items: flex-start;">
+			<div class="feature" style="flex: 2 1 0; max-width: 100%;">
+				<h3>Latest Posts</h3>
+				<div class="feed-posts">
+					{% for post in random_posts %}
+						<div class="post-card">
+							<div style="display:flex;justify-content:space-between;align-items:center;">
+								<span style="font-weight:bold; font-size:1.1rem;">{{ post.Title }}</span>
+								<span style="color:#aaa; font-size:0.95rem;">{{ post.timestamp }}</span>
+							</div>
+							<p style="margin:8px 0 4px 0;">{{ post.content }}</p>
+							<div style="display:flex;justify-content:space-between;align-items:center; font-size:0.98rem; color:#444; margin-top:8px;">
+								<span><strong>User:</strong> {{ post.username if post.username else post.id }}</span>
+								<span><strong>Likes:</strong> <span id="likes-{{ post.post_id }}">{{ post.likes }}</span>
+									<button id="like-btn-{{ post.post_id }}" onclick="likePost('{{ post.post_id }}')" style="background:#ffd700;color:#0E6299;padding:4px 16px;border-radius:16px;font-size:0.98rem;font-weight:700;border:none;box-shadow:0 2px 8px rgba(14,98,153,0.10);cursor:pointer;transition:background 0.2s, color 0.2s; margin-left:8px;">Like</button>
+								</span>
+								<span style="color:#bbb;">Post ID: {{ post.post_id }}</span>
+							</div>
+						</div>
+					{% else %}
+						<p>No posts to show.</p>
+					{% endfor %}
+				</div>
+				<script>
+				function likePost(postId) {
+					fetch('/like_post', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({ post_id: postId })
+					})
+					.then(response => response.json())
+					.then(data => {
+						document.getElementById('likes-' + postId).innerText = data.likes;
+						var btn = document.getElementById('like-btn-' + postId);
+						btn.disabled = true;
+						btn.innerText = 'Liked!';
+						btn.style.background = '#ccc';
+						btn.style.color = '#888';
+						btn.style.cursor = 'not-allowed';
+					});
+				}
+				</script>
+			</div>
+			<div class="feature" style="flex: 1 1 0; min-width: 180px; max-width: 220px; background:#e0ecf7;">
+				<h3 style="color:#0E6299;">Current User</h3>
+				<div style="font-size:1.1rem; color:#222;">
+					{% if username %}
+						<p><strong>{{ username }}</strong></p>
+					{% else %}
+						<p>Not signed in</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	<div style="text-align:center; margin:32px 0 0 0;">
+		<button onclick="window.location.reload();" style="background:#0E6299;color:#fff;padding:12px 32px;border-radius:24px;font-size:1.15rem;font-weight:700;border:none;box-shadow:0 2px 8px rgba(14,98,153,0.12);cursor:pointer;transition:background 0.2s, color 0.2s;">Reload for New Posts</button>
+	</div>
+	<footer>
+		<p>&copy; 2025 HAJ Coin. All rights reserved.</p>
+	</footer>
+</body>
+</html>

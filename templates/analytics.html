@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAJCOIN Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-flex">
+            <h1>HAJCOIN</h1>
+            <nav class="topbar-nav" aria-label="Main Navigation">
+                <a href="/homepage.html" class="home-btn" style="margin-right:16px;">
+                    <img src="{{ url_for('static', filename='images/haj4.png') }}" alt="Home" width="64">
+                </a>
+                <a href="/signin.html">
+                    <img src="{{ url_for('static', filename='images/haj.png') }}" alt="Sign In" width="64">
+                </a>
+                <a href="/add.html">
+                    <img src="{{ url_for('static', filename='images/haj3.png') }}" alt="Feed" width="64">
+                </a>
+                <a href="/about.html">
+                    <img src="{{ url_for('static', filename='images/haj2.png') }}" alt="About Us" width="64">
+                </a>
+                <a href="/analytics.html">
+                    <img src="{{ url_for('static', filename='images/haj5.png') }}" alt="Analytics" width="64">
+                </a>
+                <a href="/account.html">Account</a>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <h2>Investment Analytics</h2>
+            <p>Track your HAJ Coin investments and see your growth over time!</p>
+        </section>
+        <section class="features" style="max-width: 900px; margin: 0 auto;">
+            <div class="feature" style="flex: 1 1 100%; max-width: 100%;">
+                <h3>Your Investment Summary</h3>
+                <div class="analytics-summary">
+                    <p><strong>Total Invested:</strong> 1200 HAJ Coins</p>
+                    <p><strong>Current Value:</strong> 1450 HAJ Coins</p>
+                    <p><strong>Growth:</strong> +20.8%</p>
+                </div>
+                <div class="analytics-chart" style="margin-top:32px;">
+                    <img src="{{ url_for('static', filename='images/Chrome_Lighthouse_Report.png') }}" alt="Investment Chart" style="width:100%;max-width:400px;border-radius:12px;">
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 HAJ Coin. All rights reserved.</p>
+    </footer>
+</body>
+</html>

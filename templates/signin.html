@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAJCOIN</title>
+    <title>Sign In - HAJCOIN</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
 </head>
 <body>
@@ -14,34 +14,28 @@
                 <a href="/homepage.html" class="home-btn" style="margin-right:16px;">
                     <img src="{{ url_for('static', filename='images/haj4.png') }}" alt="Home" width="64">
                 </a>
-                <a href="/signin.html">
-                    <img src="{{ url_for('static', filename='images/haj.png') }}" alt="Sign In" width="64">
-                </a>
                 <a href="/add.html">
                     <img src="{{ url_for('static', filename='images/haj3.png') }}" alt="Feed" width="64">
+                </a>
+                <a href="/add.html">
+                    <img src="{{ url_for('static', filename='images/haj.png') }}" alt="Analytics" width="64">
                 </a>
             </nav>
         </div>
     </header>
     <main>
         <section class="hero">
-            <h2>Welcome to HAJ Coin</h2>
-            <p>The next-generation social media platform powered by cryptocurrency. Connect, share, and earn with every interaction!</p>
-            <a class="cta" href="/signup.html">Get Started</a>
-        </section>
-        <section class="features">
-            <div class="feature">
-                <h3>Earn HAJ Coins</h3>
-                <p></p>
-            </div>
-            <div class="feature">
-                <h3>Secure Wallet</h3>
-                <p></p>
-            </div>
-            <div class="feature">
-                <h3>Community Feed</h3>
-                <p></p>
-            </div>
+            <h2>Sign In</h2>
+            <form method="POST" action="/signin.html" class="signin-form" style="max-width:400px;margin:auto;">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required style="width:100%;margin-bottom:16px;">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required style="width:100%;margin-bottom:24px;">
+                <button class="btn" type="submit" style="width:100%;">Sign In</button>
+            </form>
+            {% if error %}
+            <div style="color:red;text-align:center;margin-top:16px;">{{ error }}</div>
+            {% endif %}
         </section>
     </main>
     <footer>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account - HAJ Coin</title>
+    <link rel="stylesheet" href="/static/CSS/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-flex">
+            <h1>HAJCOIN</h1>
+            <nav class="topbar-nav" aria-label="Main Navigation">
+                <a href="/homepage.html" class="home-btn" style="margin-right:16px;">
+                    <img src="{{ url_for('static', filename='images/haj4.png') }}" alt="Home" width="64">
+                </a>
+                <a href="/signin.html">
+                    <img src="{{ url_for('static', filename='images/haj.png') }}" alt="Sign In" width="64">
+                </a>
+                <a href="/add.html">
+                    <img src="{{ url_for('static', filename='images/haj3.png') }}" alt="Feed" width="64">
+                </a>
+                <a href="/about.html">
+                    <img src="{{ url_for('static', filename='images/haj2.png') }}" alt="About Us" width="64">
+                </a>
+                <a href="/account.html">Account</a>
+            </nav>
+        </div>
+    </header>
+    <div class="account-container">
+        <h1>Your Account</h1>
+        <div class="account-info">
+            <p><strong>Username:</strong> {{ username }}</p>
+            <p><strong>Number of HAJ:</strong> {{ haj_balance }}</p>
+            <p><strong>Investments:</strong> {{ investments }}</p>
+        </div>
+        <h2 style="color:#0E6299; margin-bottom:16px;">Your Posts</h2>
+        <div class="user-posts">
+            {% for post in posts %}
+            <div class="post-card">
+                <p>{{ post.content }}</p>
+            </div>
+            {% else %}
+            <p>No posts yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

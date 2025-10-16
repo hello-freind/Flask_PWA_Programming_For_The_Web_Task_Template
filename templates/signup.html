@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up - HAJ Coin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-flex">
+            <h1>HAJCOIN</h1>
+            <nav class="topbar-nav" aria-label="Main Navigation">
+                <a href="/homepage.html" class="home-btn" style="margin-right:16px;">
+                    <img src="{{ url_for('static', filename='images/haj4.png') }}" alt="Home" width="64">
+                </a>
+                <a href="/signin.html">
+                    <img src="{{ url_for('static', filename='images/haj.png') }}" alt="Sign In" width="64">
+                </a>
+                <a href="/add.html">
+                    <img src="{{ url_for('static', filename='images/haj3.png') }}" alt="Feed" width="64">
+                </a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="account-container" style="max-width:400px;margin:48px auto;">
+            <h1>Sign Up</h1>
+            <form method="POST" action="/signup.html">
+                <div style="display:flex;flex-direction:column;gap:16px;">
+                    <input type="text" name="username" placeholder="Username" required style="padding:10px;font-size:1.1rem;">
+                    <input type="password" name="password" placeholder="Password" required style="padding:10px;font-size:1.1rem;">
+                    <input type="text" name="email" placeholder="Email" required style="padding:10px;font-size:1.1rem;">
+                    <button type="submit" style="background:#0E6299;color:#fff;padding:12px 32px;border-radius:24px;font-size:1.15rem;font-weight:700;border:none;box-shadow:0 2px 8px rgba(14,98,153,0.12);cursor:pointer;transition:background 0.2s, color 0.2s;">Sign Up</button>
+                </div>
+            </form>
+            {% if error %}
+                <p style="color:red;margin-top:16px;">{{ error }}</p>
+            {% endif %}
+            {% if success %}
+                <p style="color:green;margin-top:16px;">{{ success }}</p>
+            {% endif %}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 HAJ Coin. All rights reserved.</p>
+    </footer>
+</body>
+</html>
